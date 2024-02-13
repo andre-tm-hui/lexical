@@ -251,9 +251,7 @@ function CommentInputBox({
           }
           boxElem.style.left = `${correctedLeft}px`;
           boxElem.style.top = `${
-            bottom +
-            20 +
-            (window.pageYOffset || document.documentElement.scrollTop)
+            bottom + 20 + (window.scrollY || document.documentElement.scrollTop)
           }px`;
           const selectionRectsLength = selectionRects.length;
           const {container} = selectionState;
@@ -271,7 +269,7 @@ function CommentInputBox({
             const color = '255, 212, 0';
             const style = `position:absolute;top:${
               selectionRect.top +
-              (window.pageYOffset || document.documentElement.scrollTop)
+              (window.scrollY || document.documentElement.scrollTop)
             }px;left:${selectionRect.left}px;height:${
               selectionRect.height
             }px;width:${

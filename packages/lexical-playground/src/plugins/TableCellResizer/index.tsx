@@ -330,16 +330,16 @@ function TableCellResizer({editor}: {editor: LexicalEditor}): JSX.Element {
           backgroundColor: 'none',
           cursor: 'row-resize',
           height: '10px',
-          left: `${window.pageXOffset + left}px`,
-          top: `${window.pageYOffset + top + height}px`,
+          left: `${window.scrollX + left}px`,
+          top: `${window.scrollY + top + height}px`,
           width: `${width}px`,
         },
         right: {
           backgroundColor: 'none',
           cursor: 'col-resize',
           height: `${height}px`,
-          left: `${window.pageXOffset + left + width}px`,
-          top: `${window.pageYOffset + top}px`,
+          left: `${window.scrollX + left + width}px`,
+          top: `${window.scrollY + top}px`,
           width: '10px',
         },
       };
@@ -349,19 +349,17 @@ function TableCellResizer({editor}: {editor: LexicalEditor}): JSX.Element {
       if (draggingDirection && mouseCurrentPos && tableRect) {
         if (isHeightChanging(draggingDirection)) {
           styles[draggingDirection].left = `${
-            window.pageXOffset + tableRect.left
+            window.scrollX + tableRect.left
           }px`;
           styles[draggingDirection].top = `${
-            window.pageYOffset + mouseCurrentPos.y
+            window.scrollY + mouseCurrentPos.y
           }px`;
           styles[draggingDirection].height = '3px';
           styles[draggingDirection].width = `${tableRect.width}px`;
         } else {
-          styles[draggingDirection].top = `${
-            window.pageYOffset + tableRect.top
-          }px`;
+          styles[draggingDirection].top = `${window.scrollY + tableRect.top}px`;
           styles[draggingDirection].left = `${
-            window.pageXOffset + mouseCurrentPos.x
+            window.scrollX + mouseCurrentPos.x
           }px`;
           styles[draggingDirection].width = '3px';
           styles[draggingDirection].height = `${tableRect.height}px`;

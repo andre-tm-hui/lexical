@@ -492,10 +492,8 @@ export function useMenuAnchorRef(
     if (rootElement !== null && resolution !== null) {
       const {left, top, width, height} = resolution.getRect();
       const anchorHeight = anchorElementRef.current.offsetHeight; // use to position under anchor
-      containerDiv.style.top = `${
-        top + window.pageYOffset + anchorHeight + 3
-      }px`;
-      containerDiv.style.left = `${left + window.pageXOffset}px`;
+      containerDiv.style.top = `${top + window.scrollY + anchorHeight + 3}px`;
+      containerDiv.style.left = `${left + window.scrollX}px`;
       containerDiv.style.height = `${height}px`;
       containerDiv.style.width = `${width}px`;
       if (menuEle !== null) {
@@ -508,7 +506,7 @@ export function useMenuAnchorRef(
 
         if (left + menuWidth > rootElementRect.right) {
           containerDiv.style.left = `${
-            rootElementRect.right - menuWidth + window.pageXOffset
+            rootElementRect.right - menuWidth + window.scrollX
           }px`;
         }
         if (
@@ -517,7 +515,7 @@ export function useMenuAnchorRef(
           top - rootElementRect.top > menuHeight
         ) {
           containerDiv.style.top = `${
-            top - menuHeight + window.pageYOffset - height
+            top - menuHeight + window.scrollY - height
           }px`;
         }
       }
